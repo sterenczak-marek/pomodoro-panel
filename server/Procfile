@@ -1,0 +1,2 @@
+web: newrelic-admin run-program gunicorn --pythonpath="$PWD/sever-web" wsgi:application
+worker: python sever-web/manage.py rqworker default

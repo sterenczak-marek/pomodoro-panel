@@ -1,0 +1,13 @@
+# Dependencies related to deploying server
+-r base.txt
+
+# WSGI Handler
+gevent==1.2.2
+gunicorn==19.7.1
+
+# Caching
+hiredis==0.2.0
+django-redis-cache==1.7.1
+
+# App Monitoring
+newrelic==2.88.1.73

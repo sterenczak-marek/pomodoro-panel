@@ -1,0 +1,47 @@
+version: '3'
+
+volumes:
+  postgres_data_local: {}
+  postgres_backup_local: {}
+
+services:
+  client_web:
+    build:
+      context: .
+      dockerfile: ./compose/client_web/Dockerfile
+    volumes:
+      - ./client_web/:/app
+      - /app/node_modules
+    depends_on:
+      - server
+    command: npm start
+    ports:
+      - "3000:3000"
+    logging:
+      options:
+        max-size: "5m"
+        max-file: "1"
+
+  server:
+    build:
+      context: .
+      dockerfile: ./compose/server/Dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - ./server/:/app
+    environment:
+      - POSTGRES_USER=server_root
+    ports:
+      - "8000:8000"
+    command: /start.sh
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/postgres/Dockerfile
+    volumes:
+      - postgres_data_local:/var/lib/postgresql/data
+      - postgres_backup_local:/backups
+    environment:
+      - POSTGRES_USER=server_root
