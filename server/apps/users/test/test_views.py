@@ -16,7 +16,7 @@ class TestUserAPI(APITestCase):
     """
 
     def setUp(self):
-        self.url = reverse('user-list')
+        self.url = reverse('api:user-list')
         self.user_data = model_to_dict(UserFactory.build())
 
     def test_post_request_with_no_data_fails(self):
@@ -36,7 +36,7 @@ class TestUserDetailAPI(APITestCase):
 
     def setUp(self):
         self.user = UserFactory()
-        self.url = reverse('user-detail', kwargs={'pk': self.user.pk})
+        self.url = reverse('api:user-detail', kwargs={'pk': self.user.pk})
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
 
     def test_get_request_returns_a_given_user(self):
