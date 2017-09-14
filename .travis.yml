@@ -9,8 +9,9 @@ before_script:
 - psql -c 'CREATE DATABASE "server-web";' -U postgres
 install:
   - "pip install -r server/requirements/test.txt"
+  - "pip install coveralls"
 script:
-  - cd server/ && py.test
+  - cd server/ && py.test --cov=api
 after_success:
   - coveralls
 
@@ -25,8 +26,8 @@ after_success:
 #  run:
 #    - "./sever-web/manage.py migrate"
 #
-#notifications:
-#  email: false
+notifications:
+  email: false
 
 # This reportedly works around an issue downloading packages from pypi on
 # travis. Consider removing this after the underlying issue is fixed.
