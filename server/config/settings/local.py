@@ -66,8 +66,8 @@ DEBUG_TOOLBAR_CONFIG = {
 
 # TESTING
 # ------------------------------------------------------------------------------
-# TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 
 # Your local stuff: Below this line define 3rd party library settings

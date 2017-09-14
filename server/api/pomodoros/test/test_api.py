@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from apps.users.test.factories import UserFactory
+from api.users.test.factories import UserFactory
 from ..models import Pomodoro
 
 class PomodoroTests(APITestCase):
@@ -22,3 +22,17 @@ class PomodoroTests(APITestCase):
         created_pomodoro = Pomodoro.objects.get()
         self.assertEqual(created_pomodoro.created.replace(microsecond=0), created_pomodoro.start_date.replace(microsecond=0))
         self.assertEqual(created_pomodoro.end_date, None)
+
+    def test_anonymous_user(self):
+
+        self.client.logout()
+
+        url = reverse('api:pomodoro-list')
+        data = {}
+
+        response = self.client.get(url, data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+

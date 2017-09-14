@@ -8,10 +8,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
+import os
+import sys
+
 import environ
 
 BASE_DIR = environ.Path(__file__) - 3  # (server/config/settings/base.py - 3 = server/)
-APPS_DIR = BASE_DIR.path('apps')
+APPS_DIR = BASE_DIR.path('api')
+
+# sys.path.append(str(APPS_DIR))
+
 
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
@@ -48,14 +54,16 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',            # utilities for rest apis
     'rest_framework.authtoken',  # token authentication
+
+    'rest_auth',
 ]
 
 # Apps specific for this project go here.
 LOCAL_APPS = [
     # custom users app
-    'apps.authentication',
-    'apps.pomodoros',
-    'apps.users'
+    'api.breaks',
+    'api.pomodoros',
+    'api.users'
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -239,9 +247,9 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',

@@ -24,5 +24,6 @@ pip-log.txt
 .DS_Store
 
 env
+venv
 .venv
 site
