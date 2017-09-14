@@ -12,7 +12,9 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <sourceFolder url="file://$MODULE_DIR$/server/api" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/server/venv" />
     </content>
     <orderEntry type="jdk" jdkName="Remote Python 3.5.3 Docker Compose (server at [/home/maras/workspace/pomodoro-panel/docker-compose.yml])" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
