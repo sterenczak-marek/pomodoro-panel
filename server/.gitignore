@@ -10,6 +10,7 @@ coverage/
 nosetests.xml
 build/
 dist/
+.cache/
 *.egg-info/
 MANIFEST
 
@@ -23,7 +24,7 @@ pip-log.txt
 
 .DS_Store
 
-env
+.env
 venv
 .venv
 site
